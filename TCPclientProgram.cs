@@ -29,7 +29,7 @@ namespace TCPclient
                 }
                 catch
                 {
-                    Console.WriteLine("连接超时，服务器没有响应！");//connection fail
+                    Console.WriteLine("Connection timed out , the server does not respond!");//connection fail
                     Console.ReadKey();
                     return;
                 }
