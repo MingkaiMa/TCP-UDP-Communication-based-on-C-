@@ -13,12 +13,12 @@ namespace UDPClient
             byte[] data = new byte[1024];
             string input, stringData;
 
-            //构建TCP 服务器
-            Console.WriteLine("我是UDP客户机, 我的名字是{0}", Dns.GetHostName());
+            //Create TCP server
+            Console.WriteLine("I am UDP client,my name is{0}", Dns.GetHostName());
 
-            //设置服务IP，设置TCP端口号
+            //Setup service IP and TCP port
             IPEndPoint ip = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 10159);
-            //定义网络类型，数据连接类型和网络协议UDP
+            //Define the type of network,data connection and network protocol UDP
             Socket server = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             string welcome = "welcome,server! ";
             data = Encoding.Default.GetBytes(welcome);
@@ -26,9 +26,9 @@ namespace UDPClient
             IPEndPoint sender = new IPEndPoint(IPAddress.Any, 0);
             EndPoint Remote = (EndPoint)sender;
             data = new byte[1024];
-            //对于不存在的IP地址，加入此行代码后，可以在指定时间内解除阻塞模式限制
+            //For non-existent IP address, after adding this line of code, unblock mode within a specified time limitation
             int recv = server.ReceiveFrom(data, ref Remote);
-            Console.WriteLine("收到来自{0}的信息: ", Remote.ToString());
+            Console.WriteLine("receive message from{0}: ", Remote.ToString());
             Console.WriteLine(Encoding.ASCII.GetString(data, 0, recv));
             while (true)
             {
@@ -41,7 +41,7 @@ namespace UDPClient
                 stringData = Encoding.ASCII.GetString(data, 0, recv);
                 Console.WriteLine(stringData);
             }
-            Console.WriteLine("正在退出...");
+            Console.WriteLine("exit...");
             server.Close();
         }
 
